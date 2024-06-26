@@ -1,0 +1,36 @@
+
+CREATE TABLE Khoa (
+    MaKH VARCHAR(10) PRIMARY KEY,
+    TenKH VARCHAR(255)
+);
+
+
+CREATE TABLE SinhVien (
+    MaSV VARCHAR(10) PRIMARY KEY,
+    HoSV VARCHAR(255),
+    TenSV VARCHAR(255),
+    Phai VARCHAR(10),
+    NgaySinh DATE,
+    NoiSinh VARCHAR(255),
+    MaKH VARCHAR(10),
+    HocBong DECIMAL(10, 2),
+    DiemTrungBinh DECIMAL(3, 2),
+    FOREIGN KEY (MaKH) REFERENCES Khoa(MaKH)
+);
+
+
+CREATE TABLE MonHoc (
+    MaMH VARCHAR(10) PRIMARY KEY,
+    TenMH VARCHAR(255),
+    Sotiet INT
+);
+
+
+CREATE TABLE Ketqua (
+    MaSV VARCHAR(10),
+    MaMH VARCHAR(10),
+    Diem DECIMAL(3, 2),
+    PRIMARY KEY (MaSV, MaMH),
+    FOREIGN KEY (MaSV) REFERENCES SinhVien(MaSV),
+    FOREIGN KEY (MaMH) REFERENCES MonHoc(MaMH)
+);
